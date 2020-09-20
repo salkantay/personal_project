@@ -23,31 +23,51 @@
                         Select parameters
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form onchange="validate_search()">
                             <div class="form-group">
                                 <label for="est-name">Establishment Name<span style="color: red"> *</span></label>
-                                <input name="est-name" class="form-control" id="est-name" aria-describedby="est-help" required>
+                                <input name="est-name" class="form-control" id="est-name" aria-describedby="est-help"
+                                    required>
                                 <small id="est-help" class="form-text text-muted">Supplying a ^
                                     (claret) will search for all businesses.
                                 </small>
                             </div>
+                            <p>Or</p>
+                            <div class="form-group">
+                                <label for="est-address">Address<span style="color: red"> *</span></label>
+                                <input name="est-address" class="form-control" id="est-address"
+                                    aria-describedby="address-help" required>
+                                <small id="address-help" class="form-text text-muted">Part of the address or postcode
+                                    search for.
+                                    Supplying a ^ (claret) will search for all addresses/postcodes.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="sort-order">Business Type</label>
+                                <select class="form-control" name="business-type" id="business-type">
+                                    <option selected disabled>-- Select business type --</option>
+                                    {% for btype in business_types %}
+                                    <option value="{{ btype }}">{{ btype }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="sort-order">Sort Order</label>
-                                <select class="form-control" name="sort-order" id="cars">
+                                <select class="form-control" name="sort-order" id="sort-order">
                                     <option selected disabled>-- Select ordering method --</option>
                                     <option>Alphabetically ascending</option>
                                     <option>Business type in ascending order</option>
                                     <option>Rating score in ascending order</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" id="search-ratings" class="btn btn-primary" disabled>Search</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script type="text/javascript" src="static/js/validate_form.js"></script>
 </body>
 
 </html>

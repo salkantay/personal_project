@@ -9,16 +9,24 @@ def home_page():
 
 @app.route('/food_hygiene', methods=['GET', 'POST'])
 def food_hygiene():
+
+    business_types = []
     if request.method == 'GET':
 
         headers = {}
         # url = 'https://ratings.food.gov.uk/OpenDataFiles/FHRS416en-GB.json'
-        url = 'https://ratings.food.gov.uk/enhanced-search/en-GB/^/^/DISTANCE/0/^/1.5907/54.9840/1/30/json'
+        # url = 'https://ratings.food.gov.uk/enhanced-search/en-GB/^/^/DISTANCE/0/^/1.5907/54.9840/1/30/json'
+        url = 'https://ratings.food.gov.uk/business-types/json'
         headers['content-type'] = 'application/json'
 
         loading = requests.get(url, headers=headers, verify=False)
         loading = loading.json()
         print(loading)
-        # print(loading['FHRSEstablishment']['EstablishmentCollection']['EstablishmentDetail']['BusinessName'])
+        for key in loading['ArrayOfWebBusinessTypeAPI']['WebBusinessTypeAPI']:
+            business_types.append(key['BusinessTypeName'])
+        # print(loading['ArrayOfWebBusinessTypeAPI']['WebBusinessTypeAPI']['BusinessTypeName'])
 
-        return render_template('food-hygiene.html')
+        print(business_types)
+
+        return render_template('food-hygiene.html',
+                                business_types=business_types)
