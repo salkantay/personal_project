@@ -4,7 +4,7 @@ import requests
 import json
 
 @app.route('/')
-@app.route('/index')
+@app.route('index.html')
 def home_page():
     return render_template('home_page.html')
 
