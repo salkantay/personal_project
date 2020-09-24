@@ -4,8 +4,9 @@ import requests
 import json
 
 @app.route('/')
+@app.route('/index')
 def home_page():
-    return render_template('index.html')
+    return render_template('home_page.html')
 
 @app.route('/food_hygiene', methods=['GET', 'POST'])
 def food_hygiene():
