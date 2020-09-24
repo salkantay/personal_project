@@ -5,7 +5,7 @@ import json
 
 @app.route('/')
 def home_page():
-    return render_template('home-page.html')
+    return render_template('index.html')
 
 @app.route('/food_hygiene', methods=['GET', 'POST'])
 def food_hygiene():
